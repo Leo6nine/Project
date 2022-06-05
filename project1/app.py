@@ -87,7 +87,7 @@ def venues():
           new_venues.append({
             "id": venue.id,
             "name": venue.name,
-            "num_upcoming_shows": len(list(filter(lambda x: x.start_time > datetime.now(), venue.show)))
+            "num_upcoming_shows": len(list(filter(lambda x: x.start_time > datetime.utcnow(), venue.show)))
           })
 
         city_state["venues"] = new_venues
@@ -123,8 +123,6 @@ def show_venue(venue_id):
   return render_template('pages/show_venue.html', venue=venues, upcoming_shows=upcoming_shows,
                                                past_shows=past_shows)
 
-
-  # venue = Venue.query.get(venue_id)
   # shows = Show.query.filter_by(venue_id=venue_id).all()
   # past_shows = []
   # upcoming_shows = []
